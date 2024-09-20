@@ -1,0 +1,15 @@
+<div
+  class="sidebar bg-gray-800 text-white  p-6 top-0 left-0 h-full transition-width duration-300"
+>
+  <h2 class="font-semibold text-center text-3xl">Eazios</h2>
+  <div class="mt-10">
+    <p
+      *ngFor="let item of menuItems"
+      [ngClass]="{ 'bg-[#E45735]': isActive(item.route) }"
+      class="text-gray-200 cursor-pointer hover:bg-[#E45735] transition-colors duration-300 flex rounded-sm mx-2 p-2 my-4"
+    >
+      <span class="text-center mr-2">{{ item.icon }}</span>
+      <span *ngIf="isSidebarOpen">{{ item.name }}</span>
+  </p>
+  </div>
+</div>

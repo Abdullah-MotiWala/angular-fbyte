@@ -1,0 +1,102 @@
+<div class="flex flex-col items-center p-6">
+  <div class="flex justify-between w-full">
+    <h2 class="text-xl font-semibold">All Products</h2>
+    <div class="relative">
+      <form
+        [formGroup]="searchForm"
+        (ngSubmit)="updateFilteredProducts()"
+        class="mb-4"
+      >
+        <span class="absolute left-3 top-2.5">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5 text-gray-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 4a6 6 0 100 12 6 6 0 000-12zm8 8l4 4"
+            />
+          </svg>
+        </span>
+        <input
+          formControlName="searchTerm"
+          type="text"
+          placeholder="Search..."
+          class="border border-gray-300 rounded-lg p-2 pl-10 w-full"
+          (input)="updateFilteredProducts()"
+        />
+      </form>
+    </div>
+  </div>
+
+  <table class="min-w-full bg-white border border-gray-300 rounded-md">
+    <thead
+      class="text-left border border-gray-300 bg-gray-100 font-light text-gray-600"
+    >
+      <tr>
+        <th class="p-2">Product Name</th>
+        <th class="p-2">Category</th>
+        <th class="p-2">Quantity</th>
+        <th class="p-2">Price</th>
+        <th class="p-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let product of paginatedProducts"
+        class="border border-gray-300"
+      >
+        <td class="p-2 py-6">{{ product.productName }}</td>
+        <td class="p-2 py-6">{{ product.category }}</td>
+        <td class="p-2 py-6">{{ product.stockQuantity }}</td>
+        <td class="p-2 py-6">
+          {{ product.price | currency }}
+        </td>
+        <td class="p-2 py-6 flex items-center">
+          <button (click)="editProduct(product)" class="m-2 mr-6 mb-0">
+            <app-edit-icon></app-edit-icon>
+          </button>
+          <button (click)="deleteProduct(product)" class="mb-4" >
+            <app-delete-icon></app-delete-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="mt-4">
+    <button
+      [disabled]="currentPage === 1"
+      (click)="changePage(currentPage - 1)"
+      class="rounded-full px-3 py-1 mr-2"
+    >
+      &#8592; Prev
+    </button>
+
+    <ng-container
+      *ngFor="let page of [].constructor(totalPages); let i = index"
+    >
+      <button
+        (click)="changePage(i + 1)"
+        [class.bg-[#E45735]]="currentPage === i + 1"
+        [class.text-white]="currentPage === i + 1"
+        class="rounded-md px-3 py-1 mx-1"
+      >
+        {{ i + 1 }}
+      </button>
+    </ng-container>
+
+    <button
+      [disabled]="currentPage === totalPages"
+      (click)="changePage(currentPage + 1)"
+      class="rounded-full px-3 py-1 ml-2"
+    >
+      Next &#8594;
+    </button>
+  </div>
+</div>

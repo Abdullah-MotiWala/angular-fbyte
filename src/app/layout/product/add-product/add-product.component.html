@@ -1,0 +1,113 @@
+<div class="flex items-center justify-center bg-gray-100">
+  <div class="bg-white shadow-md rounded-lg p-6 pt-2 w-full">
+    <h2 class="text-xl font-medium mb-4">
+      {{ selectedRecord && selectedRecord.id ? "Edit Product" : "Add Product" }}
+    </h2>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="mb-4">
+          <label for="productName" class="block text-gray-700 font-medium"
+            >Product Name</label
+          >
+          <input
+            id="productName"
+            formControlName="productName"
+            type="text"
+            class="border border-gray-300 rounded-lg p-2 w-full"
+          />
+          <div
+            *ngIf="
+              productForm.get('productName')?.invalid &&
+              productForm.get('productName')?.touched
+            "
+            class="text-red-500 text-sm"
+          >
+            Product Name is required.
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="category" class="block text-gray-700 font-medium"
+            >Category</label
+          >
+          <select
+            id="category"
+            formControlName="category"
+            class="border border-gray-300 rounded-lg p-2 w-full"
+          >
+            <option value="" disabled selected>Select Category</option>
+            <option *ngFor="let cat of categories" [value]="cat">
+              {{ cat }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              productForm.get('category')?.invalid &&
+              productForm.get('category')?.touched
+            "
+            class="text-red-500 text-sm"
+          >
+            Category is required.
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="quantity" class="block text-gray-700 font-medium"
+            >Quantity</label
+          >
+          <input
+            id="quantity"
+            formControlName="stockQuantity"
+            type="number"
+            min="1"
+            class="border border-gray-300 rounded-lg p-2 w-full"
+          />
+          <div
+            *ngIf="
+              productForm.get('stockQuantity')?.invalid &&
+              productForm.get('stockQuantity')?.touched
+            "
+            class="text-red-500 text-sm"
+          >
+            Quantity must be at least 1.
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="price" class="block text-gray-700 font-medium"
+            >Price</label
+          >
+          <input
+            id="price"
+            formControlName="price"
+            type="number"
+            min="0"
+            step="0.01"
+            class="border border-gray-300 rounded-lg p-2 w-full"
+          />
+          <div
+            *ngIf="
+              productForm.get('price')?.invalid &&
+              productForm.get('price')?.touched
+            "
+            class="text-red-500 text-sm"
+          >
+            Price must be at least 0.
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-end mt-4">
+        <button
+          type="submit"
+          [disabled]="!productForm.valid"
+          class="bg-[#E45735] text-white rounded-lg p-2 px-4 disabled:opacity-50"
+        >
+          {{
+            selectedRecord && selectedRecord.id ? "Save Changes" : "Add Product"
+          }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

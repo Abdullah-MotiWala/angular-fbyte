@@ -1,0 +1,114 @@
+<div class="h-screen">
+  <div class="absolute h-screen w-full -z-10">
+    <div
+      class="w-full h-full bg-gradient-to-r from-[#E45735] to-[#ec6644] absolute right-0 clip-diagonal"
+    ></div>
+  </div>
+
+  <nav class="bg-transparent w-full p-4 px-8 fixed">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="navbar-left">
+        <h1 class="text-white text-3xl font-semibold m-2">Ezios</h1>
+      </div>
+
+      <div class="navbar-right flex items-center space-x-12">
+        <a href="#" class="text-white text-md">Home</a>
+        <a href="#" class="text-white text-md">About</a>
+        <a href="#" class="text-white text-md">Services</a>
+        <a href="#" class="text-white text-md">Contact</a>
+
+        <div class="border-l border-white h-6"></div>
+
+        <a href="#" class="text-white text-md">Login</a>
+      </div>
+    </div>
+  </nav>
+  <div class="flex items-center justify-center h-screen">
+    <div class="bg-[#F6F7F9] z-20 p-8 rounded-lg shadow-md w-1/3">
+      <h2 class="text-2xl font-bold mb-6">Eazio</h2>
+      <div class="mb-6">
+        <h2 class="text-2xl font-bold text-[#292F3B]">
+          Login In To Your Account
+        </h2>
+        <p class="text-gray-400">
+          So, do you come here often?.. Let's get started.
+        </p>
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div class="mb-4 relative">
+          <label class="block text-gray-700" for="email">Email</label>
+          <div class="flex items-center">
+            <i class="fas fa-envelope absolute left-3 text-gray-500"></i>
+            <input
+              type="email"
+              id="email"
+              class="mt-1 block w-full border border-gray-300 rounded-md pl-10 p-2 focus:outline-none focus:ring focus:ring-blue-500"
+              placeholder="Email Address"
+              required
+              formControlName="username"
+            />
+          </div>
+        </div>
+        <div class="mb-4 relative">
+          <label class="block text-gray-700" for="password">Password</label>
+          <div class="flex items-center">
+            <i class="fas fa-lock absolute left-3 text-gray-500"></i>
+            <input
+              type="password"
+              id="password"
+              class="mt-1 block w-full border border-gray-300 rounded-md pl-10 p-2 focus:outline-none focus:ring focus:ring-blue-500"
+              placeholder="Your Password"
+              formControlName="password"
+              required
+            />
+            <i
+              class="fas fa-eye absolute right-3 cursor-pointer"
+              (click)="togglePasswordVisibility()"
+            ></i>
+          </div>
+        </div>
+        <div class="mb-4 flex items-center justify-between">
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              id="remember"
+              class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+            />
+            <label for="remember" class="ml-2 block text-gray-700"
+              >Remember me</label
+            >
+          </div>
+          <a href="#" class="text-[#E45735] text-sm font-bold"
+            >Oops, Forgot Password?</a
+          >
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-[#E45735] text-white py-2 rounded-md hover:bg-[#E45735] transition duration-200"
+        >
+          Let's Go To Eazio
+        </button>
+      </form>
+      <p class="mt-4 text-center text-gray-500">
+        Don't have an account?
+        <a href="#" class="text-[#E45735] font-semibold">Sign Up</a>
+      </p>
+    </div>
+  </div>
+
+
+  <div class="fixed flex justify-between bottom-2 px-6 w-full ">
+    <div class="p-4">
+      <p class="text-sm text-gray-700">&copy; 2024 Your Company</p>
+    </div>
+
+    <div class="p-4 flex space-x-6">
+      <p class="text-sm text-gray-700 hover:text-gray-900"
+        >Privacy Policy</p
+      >
+      <p class="text-sm text-gray-700 hover:text-gray-900"
+        >Need Help?</p
+      >
+    </div>
+  </div>
+</div>
